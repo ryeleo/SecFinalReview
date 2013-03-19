@@ -4,6 +4,9 @@
 % TESTING
 
 \begin{document}
+XXX Safety Policy - Prove that any future state will not result in the leakage
+of an access right to an unauthorized user XXX
+
 {\Huge Access Control}
 
 % Chapter 4: review questions 4.1-4.7, problems 4.3, 4.4, 4.5, 4.8
@@ -94,7 +97,8 @@ Clandestine User: Gets admin access and evades detection by avoiding or
 suppressing audit selection and bypassing access right checks.
 
 
-{\bf R.8.2}
+{\bf R.8.2} What are the components of an IDS?
+
 Sensor: Collecting the data.
 
 Analyzer: Receive input from sensor or other analyzer and decide if intrusion
@@ -107,11 +111,9 @@ HIDS: Monitors single host and looks for suspicious activities of that host.
 
 NIDS: Monitor network traffic at network, transport, and application layers.
 
-{\bf R.8.4}
-1. If able to react fast enough, can detect and eject intruder.
+{\bf R.8.4} Benefits of IDS:
 
-2. Deterrent...
-
+1. If able to react fast enough, can detect and eject intruder, 2. Deterrent..., 
 3. Can provide information about intrusion techniques that makes us more robust
 against intrusion in the future.
 
@@ -141,7 +143,8 @@ Rule-based Penetration Detection: Build rules based on analysis of attack tools
 and scripts collected on internet. Allows 'penetration' to be within bounds of
 non-anomaly like behavior.
 
-{\bf R.8.9}
+{\bf R.8.9} Base Rate Fallacy:
+
 Even with system that has 99\% acc., end up getting lots of false positives or
 false negatives depending on what the system is built for. For security, prefer
 false positive; For usability false positives interfere with usability. False
@@ -172,7 +175,8 @@ Service Control: Which internet services can be accessed.
 
 Behavior Control: Controls how internet services are used; e.g. filter email spam.
 
-Direction Control: Determines direction that internet service can flow.
+Direction Control: Determines direction that internet service can flow for
+particular services.
 
 User Control: Control access to internet service based on the user trying to
 access it.
@@ -206,12 +210,13 @@ IPS = Intrusion Prevention System: Super smart firewall IDS.
 Buffer Overflow: When you step past bounds of buffer. 
 
 {\bf R.10.2}
-Stack, Heap, Global Data Area can be hit by buffer overflow
+Stack, Heap, Global Data Area can be hit by buffer overflow and exploited.
 
 {\bf R.10.3}
 If can reach EIP, redirect flow of execution.
 
-{\bf R.10.4}
+{\bf R.10.4} Two essential ingredients for Buffer Overflow exploit:
+
 Location of SC, and how far EIP is from buffer overflow.
 
 {\bf R.10.5}
@@ -231,14 +236,15 @@ accesses are vulnerable to buffer overflow.
 
 % Chapter 11: review questions 11.4-11.7, 11.11, 11.13, problem 11.4
 {\Huge Software Security}
+
 {\bf R.11.4}
 Injection Attack: Non-sanitized input gets executed because of poor programming
 convention.
 
 {\bf R.11.5}
-SQL: Will execute arbitrary querry to a DB on server.
+SQL injection: Will execute arbitrary querry to a DB on server.
 
-Command: Will execute arbitrary server code.
+Command injection: Will execute arbitrary server code.
 
 {\bf R.11.6}
 XSS: Input from one user including malicious code is output to another user who
@@ -246,26 +252,26 @@ upon viewing will execute that code; guest-book example.
 
 {\bf R.11.7}
 Input Sanitization is the most commonly used method to verify the correctness of
-input. Make sure it has no code essentially.
+input. Make sure input has no code, essentially.
 
 {\bf R.11.11}
-Race Condition: Two procs share mem, value of mem depends on which process gets
-there first.
+Race Condition: Two procs share mem and are trying to perform write, final value
+of mem depends on the order that the procs get to the memory.
 
 {\bf R.11.13}
 Principle of Least Privilege: Give each user the minimal set of access rights
-needed to execute what they need to execute.
+needed to execute what they need to execute to fulfill their role.
 
 
 % Chapter 12: review questions 12.3-12.7, 12.17, problems 12.1, 12.4, 12.5
-{OS Security}
+{\Huge OS Security}
 
 {\bf R.12.3}
 Basic steps to secure base OS:
 
-Patch; Harden and Config (RM unneeded services, Config users and permissions,
-configure resource controls); install security controls (IDS, Firewall,
-Anti-Virus). TEST
+1. Install/Patch(Update) ; 2. Harden and Config (RM unneeded services, Config users and permissions,
+configure resource controls); 3. install security controls (IDS, Firewall,
+Anti-Virus). 4. TEST
 
 
 {\bf R.12.4}
@@ -273,7 +279,8 @@ Keeping up to date important because new flaws always discovered.
 
 {\bf R.12.5}
 Autopatching is easier for sys-admin, bad because might patch be stupid and
-introduce instability.
+introduce instability. Patches should likely be investigated by sys-admin
+whereever security is of utmost importance.
 
 %{\bf R.12.6}
 %Less vectors of attc
@@ -282,7 +289,7 @@ introduce instability.
 
 
 {\bf R.12.17}
-Chroot jail restricts services/applications view of filesystem to particular
+Chroot jail: restricts services/applications view of filesystem to particular
 folder. CAN BE CIRCUMVENTED.
 
 % Chapter 13: review questions 13.2, 13.4, 3.8, 13.9, 13.13, problems 13.1, 13.2, 13.4, 13.9
@@ -291,11 +298,11 @@ folder. CAN BE CIRCUMVENTED.
 {\bf R.13.2}
 Properties of MLS BLP
 
-ss-property: (read-up) Can only read if subjects level is >= than the objects.
+1. ss-property: (read-up) Can only read if subjects level is >= than the objects.
 
-*-property: (write-down) Can only write if subjects level is <= than the objects.
+2. *-property: (write-down) Can only write if subjects level is <= than the objects.
 
-ds-property: (static?) If subject currently has access to object, then they have the
+3. ds-property: (static?) If subject currently has access to object, then they have the
 access rights to it.
 
 {\bf R.13.4}
@@ -304,18 +311,17 @@ BLP: (Confidentiality) No Read-Up, No Write-Down
 Biba: (Integrity) No Read-Down, No Write-Up
 
 {\bf R.13.8}
-Reference monitor must enforce security rules No Read-Up, No Write-Down
+Reference monitor must enforce security rules -- No Read-Up, No Write-Down
 
 {\bf R.13.9}
-Reference monitor must have Complete Mediation (Every access must be handled), Isolation (DB cannot be accessed or
-written by unauthorized subjects), Verifiable (Correctness of actions)
+Reference monitor must have 1. Complete Mediation (Every access must be
+handled), 2. Isolation (DB cannot be accessed or written by unauthorized
+subjects), 3. Verifiable (Provable correctness of actions)
 
 {\bf R.13.13}
-TMP Offers: Auth Boot, Certification (it has a private key that only it knows),
-Encryption (Only machine with particular setting can decrypt what TPM has
+TMP Offers: 1. Auth Boot, 2. Certification (it has a private key that only it knows),
+3. Encryption (Only machine with particular setting can decrypt what TPM has
 encrypted)
 
 
-XXX Safety Policy - Prove that any future state will not result in the leakage
-of an access right to an unauthorized user XXX
 \end{document}
