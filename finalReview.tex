@@ -3,6 +3,8 @@
 
 
 \begin{document}
+\large{Access Control}
+
 % Chapter 4: review questions 4.1-4.7, problems 4.3, 4.4, 4.5, 4.8
 {\bf R.4.1} MAC provides a static, provably safe access control system. DAC
 trusts the admission and rejection of access rights to user's as opposed to
@@ -15,9 +17,9 @@ rights of a role are strictly applied to groups of people who are given that
 role, while DAC and MAC traditionally are determined on a per-user/person basis.
 
 {\bf R.4.3} 
-Process: A process running with given permissions
-User: A user
-Group: A set of users
+Owner: The owner, typically creator of an object
+Group: A set of users that have certain access rights to an object
+Other: Everybody else
 
 {\bf R.4.4} A subject is the actor, it acts on objects. The object is the entity
 of interest, it is acted upon.
@@ -31,9 +33,9 @@ Ticket: A subject and the rights it has to act on each object.
 
 {\bf R.4.7}
 A protection domain is a grouping of access rights that a particular set of
-subjects have. One simple example of this is Kernel access rights as opposed to
-User access rights; these could be considered to be split into different
-protection domains.
+objects have. One simple example of this is Kernel access rights as opposed to
+User access rights; User Mode can access only certain objects while Kernel mode
+can access all objects.
 
 %{\bf 4.3}
 %{\bf 4.4}
@@ -41,8 +43,15 @@ protection domains.
 %{\bf 4.8}
 
 % Chapter 6: review questions 6.1, 6.7, 6.9, problems 6.7, 6.10, 6.12
-{\bf R.6.1} Malware can propagate through 1. social engineering attacks, 2.
-Vulnerability Exploits, 3. Infected Content.
+\large{Malware}
+
+Worm is a stand alone programs while virus is dependent on another piece of
+software.
+
+{\bf R.6.1} Malware can propagate through 
+1. Social Engineering Attacks, 
+2. Vulnerability Exploits, 
+3. Infected Content.
 
 {\bf R.6.7} A drive-by-download is a web browser exploit (or potentially other
 internet application I think) that is triggered upon visiting a certain
@@ -72,67 +81,240 @@ the operating system essentially. \texttt{This does/can include all of the above
 
 
 % Chapter 8: review questions 8.1-8.9, 8.13, problems 8.6, 8.8
+\large{Intrusion Detection}
+
 {\bf R.8.1}
+Masquerader: Someone who does not have access that penetrates system and then
+pretends to be a legit user accesses.
+
+Misfeasor: Legitimate user who misuses their rights.
+
+Clandestine User: Gets admin access and evades detection by avoiding or
+suppressing audit selection and bypassing access right checks.
+
+
 {\bf R.8.2}
+Sensor: Collecting the data.
+
+Analyzer: Receive input from sensor or other analyzer and decide if intrusion
+has occurred could provide evidence and suggest what to do next.
+
+User Interface: Portray results to user. And control.
+
 {\bf R.8.3}
+HIDS: Monitors single host and looks for suspicious activities of that host.
+
+NIDS: Monitor network traffic at network, transport, and application layers.
+
 {\bf R.8.4}
-{\bf R.8.5}
+1. If able to react fast enough, can detect and eject intruder.
+
+2. Deterrent...
+
+3. Can provide information about intrusion techniques that makes us more robust
+against intrusion in the future.
+
+%{\bf R.8.5}
+
 {\bf R.8.6}
+Anomaly Detection: (WhiteList) Make profile for user and use statistical methods to test
+against that profile to see if user is acting as an anomaly.
+
+Signature Detection: (BlackList) Look for some particular predefined bad
+behavior.
+
 {\bf R.8.7}
+Metrics and measures for intrusion detection:
+
+- Login and Session Activity
+
+- Command or Program Execution Activity
+
+- File Access Activity
+
 {\bf R.8.8}
+Rule-based Anomaly Detection: Same as anomaly detection except uses history of
+audit to make rules, then make rules based on run-time and compares the two.
+
+Rule-based Penetration Detection: Build rules based on analysis of attack tools
+and scripts collected on internet. Allows 'penetration' to be within bounds of
+non-anomaly like behavior.
+
 {\bf R.8.9}
+Even with system that has 99\% acc., end up getting lots of false positives or
+false negatives depending on what the system is built for. For security, prefer
+false positive; For usability false positives interfere with usability. False
+negatives mean that we think system is secure but it is actually not.
+
 {\bf R.8.13}
+Honypot: Outside of firewall, used as decoy to either satisfy dumb adversary or
+to bait malicious people and blacklist them.
 
 
 
 % Chapter 9: review questions 9.1-9.5, 9.11, 9.13, problems 9.4, 9.5
-{\bf R.9.1}
-{\bf R.9.2}
-{\bf R.9.3}
-{\bf R.9.4}
-{\bf R.9.5}
-{\bf R.9.13}
-{\bf R.9.11}
+\large{Firewall}
 
+{\bf R.9.1}
+Goals of firewall:
+
+1. All traffic must be captured by firewall.
+
+2. Only authorized traffic must pass by firewall.
+
+3. System/hardware running firewall cannot be penetrated
+
+{\bf R.9.2}
+Firewall techniques for enforcing security policy.
+
+Service Control: Which internet services can be accessed.
+
+Behavior Control: Controls how internet services are used; e.g. filter email spam.
+
+Direction Control: Determines direction that internet service can flow.
+
+User Control: Control access to internet service based on the user trying to
+access it.
+
+{\bf R.9.3}
+What mechanisms are used in packet firewalls: Src IP, Dst IP, TCP/UDP Port, IP
+protocol, NIC(MAC addr).
+
+
+{\bf R.9.4}
+Weaknesses of packet filter: IP spoofing attack, Tiny fragment attacks, hard to
+configure correctly, no advanced authentication.
+
+
+{\bf R.9.5}
+Stateful Firewall: Can track TCP sessions and sequence numbers, removing
+possibility for session hijacking.
+
+{\bf R.9.11}
+DMZ = Demilitarized Zone: Has all public facing servers.
+
+{\bf R.9.13}
+IPS = Intrusion Prevention System: Super smart firewall IDS.
 
 
 % Chapter 10: review questions 10.1-10.9, problem 10.10
+
+\large{Buffer Overflow}
+
 {\bf R.10.1}
+Buffer Overflow: When you step past bounds of buffer. 
+
 {\bf R.10.2}
+Stack, Heap, Global Data Area can be hit by buffer overflow
+
 {\bf R.10.3}
+If can reach EIP, redirect flow of execution.
+
 {\bf R.10.4}
+Location of SC, and how far EIP is from buffer overflow.
+
 {\bf R.10.5}
-{\bf R.10.6}
-{\bf R.10.7}
-{\bf R.10.8}
-{\bf R.10.9}
+Lower level languages, that do not automatically check buffer ranges upon
+accesses are vulnerable to buffer overflow.
+
+%{\bf R.10.6}
+
+%{\bf R.10.7}
+%SC: a piece of code that gives you a shell.
+
+% {\bf R.10.8}
+
+% {\bf R.10.9}
 
 
 
 % Chapter 11: review questions 11.4-11.7, 11.11, 11.13, problem 11.4
+\large{Software Security}
 {\bf R.11.4}
-{\bf R.11.5}
-{\bf R.11.6}
-{\bf R.11.7}
-{\bf R.11.11}
-{\bf R.11.13}
+Injection Attack: Non-sanitized input gets executed because of poor programming
+convention.
 
+{\bf R.11.5}
+SQL: Will execute arbitrary querry to a DB on server.
+
+Command: Will execute arbitrary server code.
+
+{\bf R.11.6}
+XSS: Input from one user including malicious code is output to another user who
+upon viewing will execute that code; guest-book example.
+
+{\bf R.11.7}
+Input Sanitization is the most commonly used method to verify the correctness of
+input. Make sure it has no code essentially.
+
+{\bf R.11.11}
+Race Condition: Two procs share mem, value of mem depends on which process gets
+there first.
+
+{\bf R.11.13}
+Principle of Least Privilege: Give each user the minimal set of access rights
+needed to execute what they need to execute.
 
 
 % Chapter 12: review questions 12.3-12.7, 12.17, problems 12.1, 12.4, 12.5
-{\bf R.12.3}
-{\bf R.12.4}
-{\bf R.12.5}
-{\bf R.12.6}
-{\bf R.12.7}
-{\bf R.12.17}
+\large{OS Security}
 
+{\bf R.12.3}
+Basic steps to secure base OS:
+
+Patch; Harden and Config (RM unneeded services, Config users and permissions,
+configure resource controls); install security controls (IDS, Firewall,
+Anti-Virus). TEST
+
+
+{\bf R.12.4}
+Keeping up to date important because new flaws always discovered.
+
+{\bf R.12.5}
+Autopatching is easier for sys-admin, bad because might patch be stupid and
+introduce instability.
+
+%{\bf R.12.6}
+%Less vectors of attc
+
+%{\bf R.12.7}
+
+
+{\bf R.12.17}
+Chroot jail restricts services/applications view of filesystem to particular
+folder. CAN BE CIRCUMVENTED.
 
 % Chapter 13: review questions 13.2, 13.4, 3.8, 13.9, 13.13, problems 13.1, 13.2, 13.4, 13.9
-{\bf R.13.2}
-{\bf R.13.4}
-{\bf R.13.8}
-{\bf R.13.9}
-{\bf R.13.13}
+\large{MLS}
 
+{\bf R.13.2}
+Properties of MLS BLP
+
+ss-property: (read-up) Can only read if subjects level is >= than the objects.
+
+*-property: (write-down) Can only write if subjects level is <= than the objects.
+
+ds-property: (static?) If subject currently has access to object, then they have the
+access rights to it.
+
+{\bf R.13.4}
+BLP: (Confidentiality) No Read-Up, No Write-Down
+
+Biba: (Integrity) No Read-Down, No Write-Up
+
+{\bf R.13.8}
+Reference monitor must enforce security rules No Read-Up, No Write-Down
+
+{\bf R.13.9}
+Reference monitor must have Complete Mediation (Every access must be handled), Isolation (DB cannot be accessed or
+written by unauthorized subjects), Verifiable (Correctness of actions)
+
+{\bf R.13.13}
+TMP Offers: Auth Boot, Certification (it has a private key that only it knows),
+Encryption (Only machine with particular setting can decrypt what TPM has
+encrypted)
+
+
+XXX Safety Policy - Prove that any future state will not result in the leakage
+of an access right to an unauthorized user XXX
 \end{document}
